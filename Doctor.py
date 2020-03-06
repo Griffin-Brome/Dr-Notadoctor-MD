@@ -27,8 +27,6 @@ class Doctor:
             rating = 2
         else:
             print("Symptom was not recognized")
-
-        print(rating)
         return rating
 
     def get_severity():
@@ -36,11 +34,10 @@ class Doctor:
         pain = int(input("On a scale from 1 to 5, how much dicomfort does this cause you?"))
         return duration  * pain
 
+    symptom = get_symptom()
+    severity = get_severity()
+    def diagnose(symp, severity):
+        return symp * severity
 
 
-    def diagnose():
-        
-        return sympt * severity
-
-
-    diagnose()
+    print(diagnose(symptom, severity))
