@@ -36,11 +36,6 @@ class Doctor:
         pain = int(input("On a scale from 1 to 5, how much dicomfort does this cause you?"))
         return duration  * pain
 
-
-
     def diagnose():
-        
         return sympt * severity
 
-
-    diagnose()
