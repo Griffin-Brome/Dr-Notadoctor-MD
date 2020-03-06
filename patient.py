@@ -13,13 +13,13 @@ class patient:
         self.symptoms.append(symptom)
 
     def getSymptoms(self):
-        for i in self.symptoms:
-            print(i.toString())
+        return self.symptoms
 
     def patientInfo(self):
         print("--------- START OF PATIENT ---------")
         print(("PATIENT INFO: " + "Name: " + self.name + " Age " + str(self.age) + " Gender: " + self.gender))
-        self.getSymptoms()
+        for i in self.symptoms:
+            print(i.toString())
         print("--------- END OF PATIENT ---------")
 
 

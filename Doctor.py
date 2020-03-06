@@ -15,11 +15,11 @@ class Doctor:
         return patient(name, age, gender)
 
     def get_symptom(self):
-        symptom = str(input("What is a symptom you are experiencing? "))
-        if symptom != "no":
-            return symptom
+        symptomname = str(input("What is a symptom you are experiencing? (none for no more)"))
+        if symptom == "none":
+            return False
         else:
-            return false
+            return symptomname
 
 
     def get_severity(self):
