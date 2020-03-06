@@ -16,7 +16,6 @@ class patient:
         for i in self.symptoms:
             print(i.toString())
 
-
     def patientInfo(self):
         print("--------- START OF PATIENT ---------")
         print(("PATIENT INFO: " + "Name: " + self.name + " Age " + str(self.age) + " Gender: " + self.gender))

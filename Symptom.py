@@ -18,7 +18,7 @@ class Symptom:
 
     # toString() returns a String summarizing the Symptom
     def toString(self):
-        return ("Name: " + self.name + ", Severity = " + str(self.severity) + ", Category: " + self.category)
+        return ("Name: " + self.name + ", Severity = " + str(self.severity))
 
 
 
