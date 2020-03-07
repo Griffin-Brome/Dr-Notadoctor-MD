@@ -1,9 +1,9 @@
 # COSC_310_Group
+
 General Repo for all group work 
 
-<h1>NATE ---------------------------------------</h1>
+## NATE ---------------------------------------
 
-<p>
 I created a patient and symptom classes
 
 A patient object will be created during conversation with the doctor
@@ -14,4 +14,4 @@ in the end you can retrieve them and give a final diagnoses
 
 My test.py class just gives examples how to use
 
-<h1> ---------------------------------------------</h1>
+## ---------------------------------------------
