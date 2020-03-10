@@ -63,24 +63,18 @@ class Doctor:
         elif healthRating > 50:
             print("I think you should get some rest and talk to me again tomorrow")
         else:
-            print("You seem pretty healthy to me!")
-
-
-
-
-
-
+            print("Symptom was not recognized")
+        return rating
 
     def get_severity():
         duration = int(input("How many days have you had this symptom?"))
         pain = int(input("On a scale from 1 to 5, how much dicomfort does this cause you?"))
         return duration  * pain
 
+    symptom = get_symptom()
+    severity = get_severity()
+    def diagnose(symp, severity):
+        return symp * severity
 
 
-    def diagnose():
-        
-        return sympt * severity
-
-
-    diagnose()
+    print(diagnose(symptom, severity))
