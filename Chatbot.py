@@ -1,21 +1,19 @@
-from Symptom import Symptom
 from patient import patient
 from Doctor import Doctor
 
 Doctor = Doctor()
 
+#greets patient and creates patient object
 Doctor.greet_user()
 patient = Doctor.get_basic_info()
 
 
-symptom = Symptom(str(Doctor.get_symptom()))
-symptom.addSeverity(Doctor.get_severity())
-patient.addSymptom(symptom)
+#Loop to get symptoms, right now breaks on "none"
+while True:
+    symptom = Doctor.new_symptom()
+    if(symptom == False):
+        break
+    patient.addSymptom(symptom)
+    print("Okay, ill remember that...")
 
-symptom = Symptom(Doctor.get_symptom())
-symptom.addSeverity(Doctor.get_severity())
-patient.addSymptom(symptom)
-
-
-
-print(patient.patientInfo())
+Doctor.diagnose(patient)
