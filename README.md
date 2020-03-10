@@ -1,9 +1,15 @@
 # COSC_310_Group
 
-General Repo for all group work 
+Have a conversation with Doctor Notadoctar, a real PHD!
 
-## NATE ---------------------------------------
+Hopefully you only have symptoms he is programed to deal with...
 
+Get your expert diagnoses today!
+
+Just run Chatbot.py, talk with the doctor, and let our state of the art symptom analysis
+system recommend action!
+
+## NATE WICKENHEISER ---------------------------------------
 I created a patient and symptom classes
 
 A patient object will be created during conversation with the doctor
