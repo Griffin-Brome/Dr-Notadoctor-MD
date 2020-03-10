@@ -45,21 +45,23 @@ class Doctor:
         tempsymptom.addSeverity(duration*pain)
         return tempsymptom
 
-    def diagnose(self, symptoms, age):
+    def diagnose(self, patient):
         healthRating = 0
+        symptoms = patient.getSymptoms()
         for asymptom in symptoms:
             healthRating += int(asymptom.getSeverity()) * int(self.SymptomList[asymptom.getName()])
-        healthRating += age
+        healthRating += patient.getAge()
 
         print("Analyzing results...")
         for i in range(1,8):
             time.sleep(.5)
-            print(".")
+            print("...")
 
+        print("Well " + patient.getName() + "...")
         if healthRating > 75:
             print("I suggest you go to a real doctor")
         elif healthRating > 50:
-            print("Get some rest and talk to me again tomorrow")
+            print("I think you should get some rest and talk to me again tomorrow")
         else:
             print("You seem pretty healthy to me!")
 

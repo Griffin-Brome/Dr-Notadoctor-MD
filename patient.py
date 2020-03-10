@@ -18,6 +18,9 @@ class patient:
     def getSymptoms(self):
         return list(self.symptoms)
 
+    def getName(self):
+        return self.name
+
     def patientInfo(self):
         print("--------- START OF PATIENT ---------")
         print(("PATIENT INFO: " + "Name: " + self.name + " Age: " + str(self.age) + " Gender: " + self.gender))

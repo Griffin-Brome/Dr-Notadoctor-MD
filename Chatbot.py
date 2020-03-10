@@ -16,4 +16,4 @@ while True:
     patient.addSymptom(symptom)
     print("Okay, ill remember that...")
 
-Doctor.diagnose(patient.getSymptoms(), patient.getAge())
+Doctor.diagnose(patient)
