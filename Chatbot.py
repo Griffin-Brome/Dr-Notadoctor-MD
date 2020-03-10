@@ -1,4 +1,3 @@
-from Symptom import Symptom
 from patient import patient
 from Doctor import Doctor
 
@@ -11,17 +10,10 @@ patient = Doctor.get_basic_info()
 
 #Loop to get symptoms, right now breaks on "none"
 while True:
-    symptomname = Doctor.get_symptom()
-    if not symptomname:
+    symptom = Doctor.new_symptom()
+    if(symptom == False):
         break
-
-    symptom = Symptom(symptomname)
-    symptom.addSeverity(Doctor.get_severity())
     patient.addSymptom(symptom)
+    print("Okay, ill remember that...")
 
-#creates list of symptom objects
-mysymptoms = patient.getSymptoms()
-
-print(mysymptoms[0].toString())
-
-print(patient.patientInfo())
+Doctor.diagnose(patient.getSymptoms(), patient.getAge())
