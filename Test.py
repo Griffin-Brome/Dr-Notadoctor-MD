@@ -1,5 +1,6 @@
 from Symptom import *
 from patient import *
+from Chatbot import *
 
 #Creating first Symptom
 first = Symptom("Cough")
@@ -33,4 +34,11 @@ patient2.addSymptom(third)
 
 # Get patient info(Auto prints)
 patient2.patientInfo()
+
+
+print()
+# Start Chatbot
+chatbot1 = Chatbot()
+chatbot1.startChat()
+
 
