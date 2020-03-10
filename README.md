@@ -3,7 +3,18 @@ General Repo for all group work
 
 <h1>NATE ---------------------------------------</h1>
 
-<p>
+Have a conversation with Doctor Notadoctar, a real PHD!
+
+Hopefully you only have symptoms he is programed to deal with...
+
+Get your expert diagnoses today!
+
+
+
+
+
+=================================================
+
 I created a patient and symptom classes
 
 A patient object will be created during conversation with the doctor
