@@ -16,9 +16,14 @@ class Symptom:
     def addSeverity(self, severity):
         self.severity = severity
 
+    def getSeverity(self):
+        return int(self.severity)
+
+    def getName(self):
+        return self.name
     # toString() returns a String summarizing the Symptom
     def toString(self):
-        return ("Name: " + self.name + ", Severity = " + str(self.severity) + ", Category: " + self.category)
+        return ("Name: " + self.name + ", Severity = " + str(self.severity))
 
 
 
