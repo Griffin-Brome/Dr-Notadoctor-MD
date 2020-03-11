@@ -21,6 +21,9 @@ class patient:
     def getName(self):
         return self.name
 
+    def getGender(self):
+        return self.gender
+
     def patientInfo(self):
         print("--------- START OF PATIENT ---------")
         print(("PATIENT INFO: " + "Name: " + self.name + " Age: " + str(self.age) + " Gender: " + self.gender))

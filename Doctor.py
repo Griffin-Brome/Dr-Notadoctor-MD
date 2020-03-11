@@ -52,10 +52,15 @@ class Doctor:
             healthRating += int(asymptom.getSeverity()) * int(self.SymptomList[asymptom.getName()])
         healthRating += patient.getAge()
 
-        print("Analyzing results...")
-        for i in range(1,8):
+        print("Analyzing symptoms...")
+
+        for asymptom in symptoms:
+            print(asymptom.getName())
             time.sleep(.5)
             print("...")
+            time.sleep(.5)
+
+
 
         print("Well " + patient.getName() + "...")
         if healthRating > 75:
