@@ -14,6 +14,8 @@ This application requires Python 3.8
 
 `# apt install python3`
 
+`$ pip3 install requirements.txt`
+
 To run it, simply execute Chatbot.py
 
 `$ python3 -m Chatbot.py`
