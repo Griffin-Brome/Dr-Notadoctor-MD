@@ -18,11 +18,6 @@ class Doctor:
             "fatigue" : 5,
             "none" : 0
         }
-        self.genderList = {
-            "male",
-            "female",
-            "other"
-        }
         pass
 
     def greet_user(self):
@@ -31,21 +26,8 @@ class Doctor:
 
     def get_basic_info(self):
         name = input("What is your name? ")
-        while True:
-            try:
-                age = int(input("Hello " + name + "! How old are you? "))
-            except ValueError:
-                print("Invalid input for age. Please try again.")
-                continue
-            else:
-                break
-
-        while True:
-            gender = str(input("What is your gender? Male, Female or other. "))
-            if gender not in self.genderList:
-                print("Invalid gender. Please try again.")
-            if gender in self.genderList:
-                break
+        age = input("Hello " + name + "! How old are you? ")
+        gender = input("What is your gender? ")
         return patient(name, age, gender)
 
     def new_symptom(self):
@@ -81,17 +63,13 @@ class Doctor:
         elif healthRating > 50:
             print("I think you should get some rest and talk to me again tomorrow")
         else:
-            print("Symptom was not recognized")
-        return rating
+            print("You seem pretty healthy to me!")
 
-    def get_severity():
-        duration = int(input("How many days have you had this symptom?"))
-        pain = int(input("On a scale from 1 to 5, how much dicomfort does this cause you?"))
-        return duration  * pain
 
-    symptom = get_symptom()
-    severity = get_severity()
-    def diagnose(symp, severity):
-        return symp * severity
+
+
+
+
+
 
 
