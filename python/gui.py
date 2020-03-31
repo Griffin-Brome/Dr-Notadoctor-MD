@@ -1,34 +1,45 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter import scrolledtext
 
-# initialize root element & grid geometry manager
-root = Tk()
-root.title("Dr. Notadoctor, MD")
-content = ttk.Frame(root)
-content.grid(column=0, row=0, sticky=(N,S,E,W))
+# writes a message to the conversation text box
+def writeToConvo(text):
+    # set to normal in order to write
+    convo["state"] = "normal" 
+    convo.insert("end", text)
+    # disable when we're done writing
+    convo["state"] = "disabled" 
 
-# initialize slave widgets
-submit = ttk.Button(content, text="Submit")
-text = ttk.Entry(content)
-convo = Text(content, state="disabled", width=80, height=80)
-scroll = ttk.Scrollbar(convo, orient=VERTICAL, command=convo.yview)
+def submitInput():
+    if (len(text.get()) > 0):
+        writeToConvo(text.get()+"\n")
+        text.delete(0,"end")
 
-# lock slaves to grid 
-submit.grid(column=1, row=2, sticky=(N,S,E,W))
-text.grid(column=0, row=1, rowspan=2, sticky=(S,E,W))
-convo.grid(column=0, row=0, rowspan=2, columnspan=2, sticky=(N,S,E,W))
-scroll.grid(column=1, row=0, sticky=(N,S))
+if __name__ == "__main__":   
+    # initialize root element & grid geometry manager
+    root = Tk()
+    root.title("Dr. Notadoctor, MD")
+    content = ttk.Frame(root)
+    content.grid(column=0, row=0, sticky=(N,S,E,W))
 
-convo['yscrollcommand'] = scroll.set
-convo.configure(yscrollcommand=scroll.set)
+    # initialize slave widgets
+    # button is disabled until user inputs text
+    submit = ttk.Button(content, text="Submit", command=submitInput)
+    text = ttk.Entry(content)
+    convo = scrolledtext.ScrolledText(content, state="disabled")
 
-# active sizing settings
-root.columnconfigure(0, weight=1)
-root.rowconfigure(0, weight=1)
-content.columnconfigure(0, weight=3, minsize=300) # text entry box
-content.columnconfigure(1, weight=1, minsize=300) # submit button
-content.rowconfigure(0, weight=1, minsize=500) # conversation window
-content.rowconfigure(1, weight=1) # text entry & submit
+    # lock slaves to grid 
+    submit.grid(column=1, row=2, sticky=(N,S,E,W))
+    text.grid(column=0, row=1, rowspan=2, pady=(0,1), sticky=(S,E,W))
+    convo.grid(column=0, row=0, rowspan=2, columnspan=2, sticky=(N,S,E,W))
 
-# show tk window(s)
-root.mainloop()
+    # active sizing settings
+    root.columnconfigure(0, weight=1)
+    root.rowconfigure(0, weight=1)
+    content.columnconfigure(0, weight=3) # text entry box
+    content.columnconfigure(1, weight=1) # submit button
+    content.rowconfigure(0, weight=1) # conversation window
+    content.rowconfigure(1, weight=1) # text entry & submit
+
+    # show tk window(s)
+    root.mainloop()
