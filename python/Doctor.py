@@ -1,6 +1,10 @@
 from patient import patient
 from Symptom import Symptom
 import time
+from nltk.stem import PorterStemmer
+from nltk.tokenize import sent_tokenize, word_tokenize
+
+ps = PorterStemmer()
 
 class Doctor:
     def __init__(self):
@@ -18,6 +22,11 @@ class Doctor:
             "fatigue" : 5,
             "none" : 0
         }
+        self.genderList = {
+            "male",
+            "female",
+            "other"
+        }
         pass
 
     def greet_user(self):
@@ -26,13 +35,26 @@ class Doctor:
 
     def get_basic_info(self):
         name = input("What is your name? ")
-        age = input("Hello " + name + "! How old are you? ")
-        gender = input("What is your gender? ")
+        while True:
+            try:
+                age = int(input("Hello " + name + "! How old are you? "))
+            except ValueError:
+                print("Invalid input for age. Please try again.")
+                continue
+            else:
+                break
+
+        while True:
+            gender = str(input("What is your gender? Male, Female or other. "))
+            if gender not in self.genderList:
+                print("Invalid gender. Please try again.")
+            if gender in self.genderList:
+                break
         return patient(name, age, gender)
 
     def new_symptom(self):
         while True:
-            symptom = str(input("What is a symptom you are experiencing? (say none for no more) ")).lower()
+            symptom = str(input(ps.stem("What is a symptom you are experiencing? (say none for no more) "))).lower()
             if symptom == "none":
                 return False
             if symptom not in self.SymptomList:
