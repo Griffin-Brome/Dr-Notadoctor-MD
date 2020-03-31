@@ -39,3 +39,5 @@ I wrote the project documentation and oversaw the design and implementation of t
 I created the Project Charter, WBS, and Gantt Chart.
 
 I provided support to the team in successfully setting up thier workflows and development environments
+
+I created the GUI for this app using Tkinter, this code lives in gui.py currently 
