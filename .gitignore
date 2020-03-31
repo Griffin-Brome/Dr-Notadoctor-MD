@@ -1,3 +1,5 @@
-
 .idea/
-__pycache__/Symptom.cpython-37.pyc
+__pycache__/
+.venv/
+.vscode/
+*.pyc
