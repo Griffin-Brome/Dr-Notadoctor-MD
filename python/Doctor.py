@@ -1,6 +1,10 @@
 from patient import patient
 from Symptom import Symptom
 import time
+from nltk.stem import PorterStemmer
+from nltk.tokenize import sent_tokenize, word_tokenize
+
+ps = PorterStemmer()
 
 class Doctor:
     def __init__(self):
@@ -32,7 +36,7 @@ class Doctor:
 
     def new_symptom(self):
         while True:
-            symptom = str(input("What is a symptom you are experiencing? (say none for no more) ")).lower()
+            symptom = str(input(ps.stem("What is a symptom you are experiencing? (say none for no more) "))).lower()
             if symptom == "none":
                 return False
             if symptom not in self.SymptomList:
@@ -52,10 +56,15 @@ class Doctor:
             healthRating += int(asymptom.getSeverity()) * int(self.SymptomList[asymptom.getName()])
         healthRating += patient.getAge()
 
-        print("Analyzing results...")
-        for i in range(1,8):
+        print("Analyzing symptoms...")
+
+        for asymptom in symptoms:
+            print(asymptom.getName())
             time.sleep(.5)
             print("...")
+            time.sleep(.5)
+
+
 
         print("Well " + patient.getName() + "...")
         if healthRating > 75:
