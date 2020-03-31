@@ -4,13 +4,16 @@ from tkinter import scrolledtext
 
 # writes a message to the conversation text box
 def writeToConvo(text):
-    convo["state"] = "normal" # set to normal in order to write
+    # set to normal in order to write
+    convo["state"] = "normal" 
     convo.insert("end", text)
-    convo["state"] = "disabled" # disable when we're done writing
+    # disable when we're done writing
+    convo["state"] = "disabled" 
 
 def submitInput():
-    writeToConvo(text.get()+"\n")
-    text.delete(0,"end")
+    if (len(text.get()) > 0):
+        writeToConvo(text.get()+"\n")
+        text.delete(0,"end")
 
 if __name__ == "__main__":   
     # initialize root element & grid geometry manager
@@ -20,6 +23,7 @@ if __name__ == "__main__":
     content.grid(column=0, row=0, sticky=(N,S,E,W))
 
     # initialize slave widgets
+    # button is disabled until user inputs text
     submit = ttk.Button(content, text="Submit", command=submitInput)
     text = ttk.Entry(content)
     convo = scrolledtext.ScrolledText(content, state="disabled")
