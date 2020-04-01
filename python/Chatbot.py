@@ -15,9 +15,4 @@ while True:
         break
     patient.addSymptom(symptom)
     print("Okay, ill remember that...")
-
-<<<<<<< HEAD:Chatbot.py
 Doctor.diagnose(patient)
-=======
-        Doctor.diagnose(patient)
->>>>>>> 2317ad6ac54479044454aa972c70fe5b7d256ffd:python/Chatbot.py
