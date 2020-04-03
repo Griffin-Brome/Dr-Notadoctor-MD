@@ -5,6 +5,8 @@ Doctor = Doctor()
 
 
 class Chatbot:
+    def __init__(self):
+        self.startChat()
     def startChat(self):
         # greets patient and creates patient object
         Doctor.greet_user()
@@ -19,3 +21,4 @@ class Chatbot:
             print("Okay, I will remember that...")
 
         Doctor.diagnose(patient)
+bot = Chatbot()
