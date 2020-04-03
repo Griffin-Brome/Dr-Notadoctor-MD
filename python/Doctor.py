@@ -68,34 +68,21 @@ class Doctor:
 
     def new_symptom(self):
         mistakes = [ "Sorry I do not know that symptom","This is a little embarassing. But what is that?","Are you sure that's a real thing try something else"]
+        physician = self.checkDoctor()
+        if physician == 'doctor':
+            symptomlist = self.SymptomList
+        elif physician == 'dentist':
+            symptomlist = self.SymptomList2
 
         while True:
-            physician = str(input("Are you looking for a general doctor. Or, a dentist?"))
-            physician = physician.lower()
-            for i in self.physicians:
-                if i in physician:
-                    physician = i
-            print("Invalid option. Please try (doctor) or (dentist).")
-
-        while True:
-            if physician == 'doctor':
                 symptom = str(input(ps.stem("What is a symptom you are experiencing? (say none for no more) "))).lower()
                 if symptom == "none":
                     return False
-                if symptom not in self.SymptomList:
-                    print(random.choice(mistakes))
-                if symptom in self.SymptomList:
+                elif self.inLexicon(symptom, symptomlist):
                     break
-
-            if physician == 'dentist':
-                symptom = str(input("What is a symptom you are experiencing? (say none for no more) ")).lower()
-                if symptom == "none":
-                    return False
-                if symptom not in self.SymptomList2:
+                else:
                     print(random.choice(mistakes))
-                if symptom in self.SymptomList2:
-                    break
-
+    
         duration = int(input("How many days have you had this symptom? "))
         pain = int(input("On a scale from 1 to 10, how much discomfort does this cause you? "))
         tempsymptom = Symptom(symptom)
@@ -104,13 +91,21 @@ class Doctor:
         
     def inLexicon(self, sentence, lexicon):
         sentence = sentence.lower()
-        words = word_tokenize(sentence)
-        important = [ps.stem(word) for word in words] # remove common words that we don't care about
-        s = " ".join(important)
         for token in lexicon:
-            if ps.stem(token) in s:
+            if ps.stem(token) in sentence:
                 return True
         return False
+
+    def checkDoctor(self):
+        while True: 
+            physician = str(input("Are you looking for a general doctor. Or, a dentist? "))
+            physician = physician.lower()
+            for i in self.physicians:
+                if i in physician:
+                    physician = i 
+                    return physician
+            print("Invalid option. Please try (doctor) or (dentist).")
+
 
     def diagnose(self, patient):
         healthRating = 0
@@ -119,13 +114,13 @@ class Doctor:
             healthRating += int(asymptom.getSeverity()) * int(self.SymptomList[asymptom.getName()])
         healthRating += patient.getAge()
 
+        question = ["This may take a while. Any plans for the weekend?","While my diagnosis is being calculated. How's your week been?"]
+        print(random.choice(question)) 
+        
         print("Analyzing results...")
         for i in range(1,8):
             time.sleep(.5)
             print("...")
-
-        question = ["This may take a while. Any plans for the weekend?","While my diagnosis is being calculated. How's your week been?"]
-        answer = input(random.choice(question)) 
 
         print("Could be worse I guess \n...\n Well " + patient.getName() + "...")
         if healthRating > 75:
