@@ -46,13 +46,11 @@ I provided support to the team in successfully setting up thier workflows and de
 Features added 
 ===
 ### Porter Stemmer
-
+The Porter Stemmer algorithm is an NLP algorithm designed by Martin Stemmer. In essence, it reduces a word down to its "stem", which is the base from which all verb tenses are created. This allows the chat bot to interperet multiple different verb tenses provided by the user, as well as misspelings. This algorithm is imported from the NLTK Python library.
+`code here`
 ### Extra chat topic
-
+For the extra topic, the chatbot's diagnostic functionality was extended to include dentistry. As such it can now recognise queries meant for a dental professional and diagnose them.
+`code here`
 ### Misc. Responses 
-
-
-
-
-
-
+Several random phrases were added to the chatbot's repertoire. These are implemented as two lists, from which random responses are chosen. This occurs when a user queries the bot with an unknown symptom, as well as prior to calculating the final diagnosis.
+`code here`
