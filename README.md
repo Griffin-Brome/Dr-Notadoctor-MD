@@ -75,7 +75,7 @@ While the patient is being asked basic infromation they are also asked what sort
 There is error handling for if they do not choose one of these options.
 
 Once a proper choice is made the program runs as normal.
-But the symptom list being refrerenced and compared with the user inputs depends on what physician the user chose prior.
+But the symptom list being referenced and compared with the user inputs depends on what physician the user chose prior.
 
 ### Misc. Responses 
 This consists of a set of new responses to unrecognised symptoms input by the user.
