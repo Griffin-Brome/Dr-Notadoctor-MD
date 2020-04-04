@@ -12,6 +12,7 @@ ps = PorterStemmer()
 
 class Doctor:
     def __init__(self):
+        physician=''
 
         #Changed symptoms to only be single word
         self.SymptomList = {
@@ -79,15 +80,17 @@ class Doctor:
             if self.inLexicon(gender, self.genderList):
                 break
             print("Invalid gender. Please try again.")
+
+        self.physician = self.checkDoctor()
+
         return patient(name, age, gender)
 
     def new_symptom(self):
         mistakes = [ "Sorry I do not know that symptom","This is a little embarassing. But what is that?","Are you sure that's a real thing try something else"]
 
-        physician = self.checkDoctor()
-        if physician == 'doctor':
+        if self.physician == 'doctor':
             symptomlist = self.SymptomList
-        elif physician == 'dentist':
+        elif self.physician == 'dentist':
             symptomlist = self.SymptomList2
 
         while True:
