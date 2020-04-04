@@ -12,6 +12,7 @@ ps = PorterStemmer()
 
 class Doctor:
     def __init__(self):
+        physician=''
 
         #Changed symptoms to only be single word
         self.SymptomList = {
@@ -78,17 +79,20 @@ class Doctor:
             gender = str(input("What is your gender? Male, Female or other. "))
             if self.inLexicon(gender, self.genderList):
                 break
+
             print(gender + " is invalid")
             self.spellcheck(gender, self.genderList)
+    
+        self.physician = self.checkDoctor()
 
         return patient(name, age, gender)
 
     def new_symptom(self):
         mistakes = [ "Sorry I do not know that symptom","This is a little embarassing. But what is that?","Are you sure that's a real thing try something else"]
-        physician = self.checkDoctor()
-        if physician == 'doctor':
+
+        if self.physician == 'doctor':
             symptomlist = self.SymptomList
-        elif physician == 'dentist':
+        elif self.physician == 'dentist':
             symptomlist = self.SymptomList2
 
         while True:
@@ -166,6 +170,9 @@ class Doctor:
             time.sleep(.5)
             print("...")
 
+        question = ["This may take a while. Any plans for the weekend?","While my diagnosis is being calculated. How's your week been?"]
+        answer = input(random.choice(question)) 
+    
         print("Could be worse I guess \n...\n Well " + patient.getName() + "...")
         if healthRating > 75:
                 print("I suggest you go to a real medical professional")
