@@ -79,8 +79,10 @@ class Doctor:
             gender = str(input("What is your gender? Male, Female or other. "))
             if self.inLexicon(gender, self.genderList):
                 break
-            print("Invalid gender. Please try again.")
 
+            print(gender + " is invalid")
+            self.spellcheck(gender, self.genderList)
+    
         self.physician = self.checkDoctor()
 
         return patient(name, age, gender)
@@ -125,6 +127,13 @@ class Doctor:
                     if self.inLexicon(l.name(), symptomlist):
                         return str(l.name())
         return symptom
+
+    
+    def spellcheck(self, input, lexicon):
+        if input.lower() not in lexicon:
+            for key in lexicon:
+                if input[0:2] == str(key)[0:2]:
+                    print("Did u mean: " + str(key))
 
         
     def inLexicon(self, sentence, lexicon):
