@@ -1,21 +1,45 @@
 import nltk
 from nltk.corpus import wordnet
-#import ssl
-#try:
-#    _create_unverified_https_context = ssl._create_unverified_context
-#except AttributeError:
-#    pass
-#else:
-#    ssl._create_default_https_context = _create_unverified_https_context
+import ssl
 
-#nltk.download()
+#BELOW CODE IS USED TO INSTALL SELECTED CORPUS'S, GET STOPWORDS AND SYNONEMS
 
-synonyms = []
+#
+# try:
+#     _create_unverified_https_context = ssl._create_unverified_context
+# except AttributeError:
+#     pass
+# else:
+#     ssl._create_default_https_context = _create_unverified_https_context
+#
+# nltk.download()
 
-for syn in wordnet.synsets("stomach"):
-        for l in syn.lemmas():
-            synonyms.append(l.name())
+SymptomList = {
+            "cough" : 3,
+            "congestion" : 2,
+            "sneezing" : 1,
+            "fever" : 5,
+            "stomach" : 3,
+            "throat" : 2,
+            "nose" : 2,
+            "body" : 5,
+            "insomnia" : 4,
+            "fatigue" : 5,
+            "none" : 0
+        }
 
-print(set(synonyms))
+synonymdict = {}
 
-nltk.pos_tag(nltk.word_tokenize("tummy"))
+# for symptom in SymptomList:
+#     synonymdict[symptom] = []
+#     for word in wordnet.synsets(symptom, pos=wordnet.NOUN):
+#         for l in word.lemmas():
+#             synonymdict[symptom].append(l.name())
+#     print(set(synonymdict[symptom]))
+
+for word in wordnet.synsets("confused", pos=wordnet.NOUN):
+    for l in word.lemmas():
+        print(l.name())
+
+
+

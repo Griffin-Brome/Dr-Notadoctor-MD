@@ -63,7 +63,8 @@ The second way is by asking a random question to the user while their diagnosis 
 Features added 
 ===
 ### Porter Stemmer
-
+The Porter Stemmer algorithm is an NLP algorithm designed by Martin Stemmer. In essence, it reduces a word down to its "stem", which is the base from which all verb tenses are created. This allows the chat bot to interperet multiple different verb tenses provided by the user, as well as misspelings. This algorithm is imported from the NLTK Python library.
+`code here`
 ### Extra chat topic
 The new topic is all dentristry related opposed to the original doctor topic we had.
 
@@ -86,9 +87,3 @@ These two lists of questions and responses are saved within the Docotr class.
 A random number is generated when the user inputs a unrecognised symptom, which then selects one of the responses asking for them to retry.
 
 Then during the diagnosis another random number is generated to chose from a list of questions to simulate small talk with the user.
-
-
-
-
-
-
