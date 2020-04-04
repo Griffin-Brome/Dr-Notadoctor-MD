@@ -83,6 +83,7 @@ class Doctor:
 
     def new_symptom(self):
         mistakes = [ "Sorry I do not know that symptom","This is a little embarassing. But what is that?","Are you sure that's a real thing try something else"]
+
         physician = self.checkDoctor()
         if physician == 'doctor':
             symptomlist = self.SymptomList
@@ -157,6 +158,9 @@ class Doctor:
             time.sleep(.5)
             print("...")
 
+        question = ["This may take a while. Any plans for the weekend?","While my diagnosis is being calculated. How's your week been?"]
+        answer = input(random.choice(question)) 
+    
         print("Could be worse I guess \n...\n Well " + patient.getName() + "...")
         if healthRating > 75:
                 print("I suggest you go to a real medical professional")
