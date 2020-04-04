@@ -1,7 +1,10 @@
 from patient import patient
 from Symptom import Symptom
 import time
-import random
+from nltk.stem import PorterStemmer
+from nltk.tokenize import sent_tokenize, word_tokenize
+
+ps = PorterStemmer()
 
 class Doctor:
     def __init__(self):
@@ -23,18 +26,6 @@ class Doctor:
             "male",
             "female",
             "other"
-        }
-        self.physicians = {
-            "doctor",
-            "dentist"
-        }
-        self.SymptomList2 = {
-            "sore throat" : 2,
-            "sore tooth" : 3,
-            "bleeding gums" : 2,
-            "bad breath" : 1,
-            "plaque" : 1,
-            "none" : 0
         }
         pass
 
@@ -65,10 +56,12 @@ class Doctor:
         mistakes = [ "Sorry I do not know that symptom","This is a little embarassing. But what is that?","Are you sure that's a real thing try something else"]
 
         while True:
-            physician = str(input("Are you looking for a general doctor. Or, a dentist?"))
-            if physician not in self.physicians:
-                print("Invalid option. Please try (doctor) or (dentist).")
-            if physician in self.physicians:
+            symptom = str(input(ps.stem("What is a symptom you are experiencing? (say none for no more) "))).lower()
+            if symptom == "none":
+                return False
+            if symptom not in self.SymptomList:
+                print("Sorry, I don't recognise " + symptom)
+            if symptom in self.SymptomList:
                 break
 
         while True:
@@ -103,10 +96,15 @@ class Doctor:
             healthRating += int(asymptom.getSeverity()) * int(self.SymptomList[asymptom.getName()])
         healthRating += patient.getAge()
 
-        print("Analyzing results...")
-        for i in range(1,8):
+        print("Analyzing symptoms...")
+
+        for asymptom in symptoms:
+            print(asymptom.getName())
             time.sleep(.5)
             print("...")
+            time.sleep(.5)
+
+
 
         question = ["This may take a while. Any plans for the weekend?","While my diagnosis is being calculated. How's your week been?"]
         answer = input(random.choice(question)) 
