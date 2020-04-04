@@ -5,25 +5,35 @@ import random
 from nltk.stem import PorterStemmer
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk.corpus import wordnet, stopwords
 
 ps = PorterStemmer()
 
 
 class Doctor:
     def __init__(self):
+
+        #Changed symptoms to only be single word
         self.SymptomList = {
             "cough" : 3,
             "congestion" : 2,
             "sneezing" : 1,
             "fever" : 5,
-            "stomach ache" : 3,
-            "sore throat" : 2,
-            "runny nose" : 2,
+            "stomach" : 3,
+            "throat" : 2,
+            "nose" : 2,
             "sore body" : 5,
             "insomnia" : 4,
             "tired" : 4,
             "fatigue" : 5,
-            "none" : 0
+            "none" : 0,
+            "arm" : 2,
+            "leg" : 2,
+            "head" : 4,
+            "cold" : 4,
+            "fear" : 3,
+            "confused" : 3
+
         }
         self.genderList = {
             "male",
@@ -35,12 +45,17 @@ class Doctor:
             "dentist"
         }
         self.SymptomList2 = {
-            "sore throat" : 2,
-            "sore tooth" : 3,
-            "bleeding gums" : 2,
-            "bad breath" : 1,
+            "throat" : 2,
+            "tooth" : 3,
+            "gums" : 2,
+            "breath" : 1,
             "plaque" : 1,
-            "none" : 0
+            "none" : 0,
+            "yellow" : 2,
+            "discolored" : 2,
+            "jaw" : 3,
+            "teeth" : 2,
+            "gap" : 1
         }
         pass
 
@@ -76,24 +91,44 @@ class Doctor:
 
         while True:
                 symptom = str(input(ps.stem("What is a symptom you are experiencing? (say none for no more) "))).lower()
+
+                symptom = self.checkSynonyms(symptom, symptomlist)
+
                 if symptom == "none":
                     return False
                 elif self.inLexicon(symptom, symptomlist):
                     break
                 else:
                     print(random.choice(mistakes))
+
     
         duration = int(input("How many days have you had this symptom? "))
         pain = int(input("On a scale from 1 to 10, how much discomfort does this cause you? "))
         tempsymptom = Symptom(symptom)
         tempsymptom.addSeverity(duration*pain)
         return tempsymptom
+
+    #Gets synonums for each word in the sentence that is not a stopword, if a synonym is in our database of symptoms
+    #it returns that, else it just returns the original sentance
+    def checkSynonyms(self, symptom, symptomlist):
+        for word in symptom.split(" "):
+            print(word)
+            if word in set(stopwords.words("english")):
+                pass
+            for syns in wordnet.synsets(word):
+                for l in syns.lemmas():
+                    print(l.name())
+                    if self.inLexicon(l.name(), symptomlist):
+                        return str(l.name())
+        return symptom
+
         
     def inLexicon(self, sentence, lexicon):
         sentence = sentence.lower()
         for token in lexicon:
             if ps.stem(token) in sentence:
                 return True
+
         return False
 
     def checkDoctor(self):
