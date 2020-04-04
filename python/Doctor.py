@@ -161,6 +161,9 @@ class Doctor:
             time.sleep(.5)
             print("...")
 
+        question = ["This may take a while. Any plans for the weekend?","While my diagnosis is being calculated. How's your week been?"]
+        answer = input(random.choice(question)) 
+    
         print("Could be worse I guess \n...\n Well " + patient.getName() + "...")
         if healthRating > 75:
                 print("I suggest you go to a real medical professional")
