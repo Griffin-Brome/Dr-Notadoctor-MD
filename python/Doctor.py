@@ -16,14 +16,13 @@ class Doctor:
         self.SymptomList = {
             "cough" : 3,
             "congestion" : 2,
-            "sneezing" : 1,
+            "sneeze" : 1,
             "fever" : 5,
             "stomach" : 3,
             "throat" : 2,
             "nose" : 2,
-            "sore body" : 5,
             "insomnia" : 4,
-            "tired" : 4,
+            "tire" : 4,
             "fatigue" : 5,
             "none" : 0,
             "arm" : 2,
@@ -31,7 +30,7 @@ class Doctor:
             "head" : 4,
             "cold" : 4,
             "fear" : 3,
-            "confused" : 3
+            "confuse" : 3
 
         }
         self.genderList = {
@@ -46,14 +45,13 @@ class Doctor:
         self.SymptomList2 = {
             "throat" : 2,
             "tooth" : 3,
-            "gums" : 2,
             "breath" : 1,
             "plaque" : 1,
             "none" : 0,
             "yellow" : 2,
-            "discolored" : 2,
+            "discolor" : 2,
             "jaw" : 3,
-            "teeth" : 2,
+            "tooth" : 2,
             "gap" : 1
         }
         pass
@@ -94,7 +92,7 @@ class Doctor:
             symptomlist = self.SymptomList2
 
         while True:
-                symptom = str(input(ps.stem("What is a symptom you are experiencing? (say none for no more) "))).lower()
+                symptom = str(input("What is a symptom you are experiencing? (say none for no more) ")).lower()
 
                 symptom = self.checkSynonyms(symptom, symptomlist)
 
@@ -116,12 +114,10 @@ class Doctor:
     #it returns that, else it just returns the original sentance
     def checkSynonyms(self, symptom, symptomlist):
         for word in symptom.split(" "):
-            print(word)
             if word in set(stopwords.words("english")):
                 pass
             for syns in wordnet.synsets(word):
                 for l in syns.lemmas():
-                    print(l.name())
                     if self.inLexicon(l.name(), symptomlist):
                         return str(l.name())
         return symptom
