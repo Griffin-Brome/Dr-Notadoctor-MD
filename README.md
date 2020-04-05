@@ -7,20 +7,6 @@ Get your expert diagnoses today!
 Just run Chatbot.py, talk with the doctor, and let our state of the art symptom analysis
 system recommend action!
 
-Installation
-===
-This application requires Python 3
-
-`# apt install python3`
-
-`$ pip3 install -r requirements.txt`
-
-To run it, simply execute Chatbot.py
-
-`$ python3 -m Chatbot.py`
-
-Then follow the provided prompts
-
 Team
 ===
 
@@ -87,3 +73,9 @@ These two lists of questions and responses are saved within the Docotr class.
 A random number is generated when the user inputs a unrecognised symptom, which then selects one of the responses asking for them to retry.
 
 Then during the diagnosis another random number is generated to chose from a list of questions to simulate small talk with the user.
+
+Resources used
+=== 
+Name list retrieved from https://www.cs.cmu.edu/afs/cs/project/ai-repository/ai/areas/nlp/corpora/names/male.txt
+
+NLTK - Bird, Steven, Edward Loper and Ewan Klein (2009), Natural Language Processing with Python. O’Reilly Media Inc.

@@ -12,7 +12,6 @@ ps = PorterStemmer()
 
 class Doctor:
     def __init__(self):
-
         #Changed symptoms to only be single word
         self.SymptomList = {
             "cough" : 3,
@@ -78,16 +77,20 @@ class Doctor:
             gender = str(input("What is your gender? Male, Female or other. "))
             if self.inLexicon(gender, self.genderList):
                 break
-            print("Invalid gender. Please try again.")
+
+            print(gender + " is invalid")
+            self.spellcheck(gender, self.genderList)
+    
+        self.physician = self.checkDoctor()
+
         return patient(name, age, gender)
 
     def new_symptom(self):
         mistakes = [ "Sorry I do not know that symptom","This is a little embarassing. But what is that?","Are you sure that's a real thing try something else"]
 
-        physician = self.checkDoctor()
-        if physician == 'doctor':
+        if self.physician == 'doctor':
             symptomlist = self.SymptomList
-        elif physician == 'dentist':
+        elif self.physician == 'dentist':
             symptomlist = self.SymptomList2
 
         while True:
@@ -109,7 +112,7 @@ class Doctor:
         tempsymptom.addSeverity(duration*pain)
         return tempsymptom
 
-    #Gets synonums for each word in the sentence that is not a stopword, if a synonym is in our database of symptoms
+    #Gets synonums for each word in the sentence that is not a stopword, if a synonym is in our list of symptoms
     #it returns that, else it just returns the original sentance
     def checkSynonyms(self, symptom, symptomlist):
         for word in symptom.split(" "):
@@ -122,6 +125,13 @@ class Doctor:
                     if self.inLexicon(l.name(), symptomlist):
                         return str(l.name())
         return symptom
+
+    
+    def spellcheck(self, input, lexicon):
+        if input.lower() not in lexicon:
+            for key in lexicon:
+                if input[0:2] == str(key)[0:2]:
+                    print("Did u mean: " + str(key))
 
         
     def inLexicon(self, sentence, lexicon):
@@ -158,9 +168,6 @@ class Doctor:
             time.sleep(.5)
             print("...")
 
-        question = ["This may take a while. Any plans for the weekend?","While my diagnosis is being calculated. How's your week been?"]
-        answer = input(random.choice(question)) 
-    
         print("Could be worse I guess \n...\n Well " + patient.getName() + "...")
         if healthRating > 75:
                 print("I suggest you go to a real medical professional")
