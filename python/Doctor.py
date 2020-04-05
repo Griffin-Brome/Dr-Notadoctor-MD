@@ -12,8 +12,6 @@ ps = PorterStemmer()
 
 class Doctor:
     def __init__(self):
-        physician=''
-
         #Changed symptoms to only be single word
         self.SymptomList = {
             "cough" : 3,
@@ -114,7 +112,7 @@ class Doctor:
         tempsymptom.addSeverity(duration*pain)
         return tempsymptom
 
-    #Gets synonums for each word in the sentence that is not a stopword, if a synonym is in our database of symptoms
+    #Gets synonums for each word in the sentence that is not a stopword, if a synonym is in our list of symptoms
     #it returns that, else it just returns the original sentance
     def checkSynonyms(self, symptom, symptomlist):
         for word in symptom.split(" "):
@@ -170,9 +168,6 @@ class Doctor:
             time.sleep(.5)
             print("...")
 
-        question = ["This may take a while. Any plans for the weekend?","While my diagnosis is being calculated. How's your week been?"]
-        answer = input(random.choice(question)) 
-    
         print("Could be worse I guess \n...\n Well " + patient.getName() + "...")
         if healthRating > 75:
                 print("I suggest you go to a real medical professional")
