@@ -127,7 +127,7 @@ class Doctor:
         if input.lower() not in lexicon:
             for key in lexicon:
                 if input[0:2] == str(key)[0:2]:
-                    print("Did u mean: " + str(key))
+                    print("Did you mean: " + str(key) + "?")
 
         
     def inLexicon(self, sentence, lexicon):
@@ -152,8 +152,14 @@ class Doctor:
     def diagnose(self, patient):
         healthRating = 0
         symptoms = patient.getSymptoms()
+
+        if self.physician == 'doctor':
+            symptomlist = self.SymptomList
+        elif self.physician == 'dentist':
+            symptomlist = self.SymptomList2
+
         for asymptom in symptoms:
-            healthRating += int(asymptom.getSeverity()) * int(self.SymptomList[asymptom.getName()])
+            healthRating += int(asymptom.getSeverity()) * int(symptomlist[asymptom.getName()])
         healthRating += patient.getAge()
 
         question = ["This may take a while. Any plans for the weekend?","While my diagnosis is being calculated. How's your week been?"]
